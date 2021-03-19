@@ -1,19 +1,19 @@
 package manager;
 
-import graphics.MainFrame;
+import graphics.LoginFrame;
 import graphics.MainPanel;
 
 public class Manager {
 	
-	private MainFrame mainFrame;
+	private LoginFrame loginFrame;
 	private MainPanel mainPanel;
 	
 	public Manager() {
-		this.mainFrame = new MainFrame();
+		this.loginFrame = new LoginFrame();
 	}
 	
 	public void start() {
-		this.mainFrame.setVisible(true);
+		this.loginFrame.setVisible(true);
 		this.mainPanel = new MainPanel();
 	}
 }

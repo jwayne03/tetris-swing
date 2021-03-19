@@ -11,20 +11,20 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class MainFrame extends JFrame {
+public class LoginFrame extends JFrame {
 	
 	private JPanel contentPanel;
 	private JTextField textFieldUsernameField;
 	private JPasswordField passwordField;
 	
-	public MainFrame() {
+	public LoginFrame() {
 		this.onCreate();
 	}
 	
 	private void onCreate() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 610, 350);
-		setResizable(false);
+		setResizable(false); 
 		contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
