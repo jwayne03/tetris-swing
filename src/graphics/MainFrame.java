@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSplitPane;
 
 public class MainFrame extends JFrame {
 	
@@ -18,9 +19,15 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		LoginPanel loggin = new LoginPanel();
-		add(loggin);
+		contentPane.setLayout(null);
+		
+		JSplitPane splitPane = new JSplitPane();
+		
+		splitPane.setBounds(5, 5, 690, 461);
+		contentPane.add(splitPane);
+		
+		LoginPanel loginPanel = new LoginPanel();
+		splitPane.setLeftComponent(loginPanel);
 	}	
 }

@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -14,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Label;
+import java.awt.Color;
 
 public class LoginPanel extends JPanel {
 
@@ -21,8 +23,10 @@ public class LoginPanel extends JPanel {
 	private JLabel textLoggin;
 	private JPasswordField passwordField;
 	private MainMenuPanel mainMenuPanel;
+	private JButton btnNewButton;
 
 	public LoginPanel() {
+		setBackground(Color.CYAN);
 		this.onCreateLoginFrame();
 		this.mainMenuPanel = new MainMenuPanel();
 	}
@@ -31,12 +35,8 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 700, 700);
 
-		JButton btnNewButton = new JButton("LOGIN");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
+		btnNewButton = new JButton("LOGIN");
+	
 		btnNewButton.setBounds(249, 181, 173, 39);
 		add(btnNewButton);
 
@@ -61,4 +61,10 @@ public class LoginPanel extends JPanel {
 		passwordLabel.setBounds(142, 148, 101, 22);
 		add(passwordLabel);
 	}
+
+	public JButton getBtnNewButton() {
+		return btnNewButton;
+	}
+	
+	
 }
