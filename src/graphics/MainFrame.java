@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 		
 		JSplitPane splitPane = new JSplitPane();
 		
-		splitPane.setBounds(5, 5, 690, 461);
+		splitPane.setBounds(10, 11, 945, 577);
 		contentPane.add(splitPane);
 		
 		LoginPanel loginPanel = new LoginPanel();
@@ -32,9 +32,5 @@ public class MainFrame extends JFrame {
 		
 		MainMenuPanel mainMenuPanel = new MainMenuPanel();
 		splitPane.setRightComponent(mainMenuPanel);
-		
-		ConsolePanel consolePanel = new ConsolePanel();
-		consolePanel.setBounds(693, 5, 251, 641);
-		contentPane.add(consolePanel);
 	}	
 }

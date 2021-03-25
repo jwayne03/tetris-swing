@@ -33,11 +33,11 @@ public class LoginPanel extends JPanel {
 	
 	private void onCreateLoginFrame() {
 		setLayout(null);
-		setBounds(0, 0, 800, 800); 
+		setBounds(0, 0, 950, 680); 
 
 		btnNewButton = new JButton("LOGIN");
 	
-		btnNewButton.setBounds(249, 181, 173,9);
+		btnNewButton.setBounds(249, 181, 173,22);
 		add(btnNewButton);
 
 		textField = new JTextField();

@@ -13,41 +13,39 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class MainMenuPanel extends JPanel {
-	
+
 	private JPanel contentPanel;
 	private JTable table;
-	
+	private JButton btnNewGameButton;
+
 	public MainMenuPanel() {
-		setBounds(0, 0, 500, 500); 
-		
-        String[] columns = new String[] {
-            "Name", "SCORE", "DATE"
-        };
+		this.onCreate();
+	}
 
-        Object[][] data = new Object[][] {
-            {"Wayne", "John", 40.0},
-            {"Ivan", "Rambo", 70.0},
-            {"Elio", "Zorro", 60.0 },
-        };
-        
-        JButton btnNewButton = new JButton("New button");
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
-        add(btnNewButton);
+	private void onCreate() {
+		setBounds(0, 0, 503, 544);
 
-        JTable table = new JTable(data, columns);
-        this.add(new JScrollPane(table));
+		String[] columns = new String[] { "Name", "SCORE", "DATE" };
+
+		Object[][] data = new Object[][] { { "Wayne", "John", 40.0 }, { "Ivan", "Rambo", 70.0 },
+				{ "Elio", "Zorro", 60.0 }, };
+
+		JTable table = new JTable(data, columns);
+		this.add(new JScrollPane(table));
+
+		btnNewGameButton = new JButton("New button");
+		btnNewGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewGameButton.setVerticalAlignment(SwingConstants.BOTTOM);
+		add(btnNewGameButton);
 		table = new JTable();
 		table.setBackground(Color.BLACK);
 		add(table);
-		this.onCreate();
 	}
-	
-	private void onCreate() {
-		
+
+	public JButton getButtonNewGame() {
+		return btnNewGameButton;
 	}
 }
-  
