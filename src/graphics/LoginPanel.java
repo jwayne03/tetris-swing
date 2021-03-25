@@ -19,9 +19,9 @@ import java.awt.Color;
 
 public class LoginPanel extends JPanel {
 
-	private JTextField textField;
+	private JTextField userTextField;
 	private JLabel textLoggin;
-	private JPasswordField passwordField;
+	private JPasswordField userPasswordField;
 	private MainMenuPanel mainMenuPanel;
 	private JButton btnNewButton;
 
@@ -34,25 +34,21 @@ public class LoginPanel extends JPanel {
 	private void onCreateLoginFrame() {
 		setLayout(null);
 		setBounds(0, 0, 950, 680); 
-
 		btnNewButton = new JButton("LOGIN");
 	
-		btnNewButton.setBounds(249, 181, 173,22);
+		btnNewButton.setBounds(372, 175, 173,22);
 		add(btnNewButton);
 
-		textField = new JTextField();
-		textField.setBounds(249, 94, 173, 33); 
-		add(textField);
-		textField.setColumns(10);
-
-		passwordField = new JPasswordField();
-		passwordField.setBounds(249, 137, 173, 33);
-		add(passwordField);
+		this.userAndPasswordTextField();
 
 		textLoggin = new JLabel();
 		textLoggin.setBounds(249, 230, 173, 33);
 		add(textLoggin);
 		
+		this.userAndPasswordLabel();
+	}
+	
+	private void userAndPasswordLabel() {
 		Label usernameLabel = new Label("Username: ");
 		usernameLabel.setBounds(142, 105, 101, 22);
 		add(usernameLabel);
@@ -61,8 +57,29 @@ public class LoginPanel extends JPanel {
 		passwordLabel.setBounds(142, 148, 101, 22);
 		add(passwordLabel);
 	}
+	
+	private void userAndPasswordTextField() {
+		userTextField = new JTextField();
+		userTextField.setBounds(372, 88, 173, 33); 
+		add(userTextField);
+		userTextField.setColumns(10);
+
+		userPasswordField = new JPasswordField();
+		userPasswordField.setBounds(372, 131, 173, 33);
+		add(userPasswordField);
+	}
 
 	public JButton getBtnNewButton() {
 		return btnNewButton;
 	}
+
+	public JTextField getUserTextField() {
+		return userTextField;
+	}
+
+	public JPasswordField getUserPasswordField() {
+		return userPasswordField;
+	}
+	
+	
 }

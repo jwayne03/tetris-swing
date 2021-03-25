@@ -21,13 +21,20 @@ public class Manager {
 	public void start() {
 		this.loginPanel.setVisible(true);
 		this.mainPanel = new MainFrame();
+		this.setComponent();
+	}
+	
+	private void setComponent() {
+		this.mainPanel.getJSplitPane().setLeftComponent(loginPanel);
+		this.onClickLoggin();
 	}
 
 	private void onClickLoggin() {
 		this.loginPanel.getBtnNewButton().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
+				mainPanel.getJSplitPane().setRightComponent(mainMenuPanel);
+				System.out.println(loginPanel.getUserTextField().getText() + " " + loginPanel.getUserPasswordField().getText());
 			}
 		});
 	}

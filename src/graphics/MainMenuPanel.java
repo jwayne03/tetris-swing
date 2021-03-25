@@ -38,6 +38,7 @@ public class MainMenuPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+
 		btnNewGameButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(btnNewGameButton);
 		table = new JTable();
