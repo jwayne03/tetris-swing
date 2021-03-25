@@ -33,15 +33,15 @@ public class LoginPanel extends JPanel {
 	
 	private void onCreateLoginFrame() {
 		setLayout(null);
-		setBounds(0, 0, 700, 700);
+		setBounds(0, 0, 800, 800); 
 
 		btnNewButton = new JButton("LOGIN");
 	
-		btnNewButton.setBounds(249, 181, 173, 39);
+		btnNewButton.setBounds(249, 181, 173,9);
 		add(btnNewButton);
 
 		textField = new JTextField();
-		textField.setBounds(249, 94, 173, 33);
+		textField.setBounds(249, 94, 173, 33); 
 		add(textField);
 		textField.setColumns(10);
 
@@ -65,6 +65,4 @@ public class LoginPanel extends JPanel {
 	public JButton getBtnNewButton() {
 		return btnNewButton;
 	}
-	
-	
 }

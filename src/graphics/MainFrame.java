@@ -14,7 +14,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("LOGIN");
-		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 950, 680);
 		setVisible(true);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -29,5 +29,12 @@ public class MainFrame extends JFrame {
 		
 		LoginPanel loginPanel = new LoginPanel();
 		splitPane.setLeftComponent(loginPanel);
+		
+		MainMenuPanel mainMenuPanel = new MainMenuPanel();
+		splitPane.setRightComponent(mainMenuPanel);
+		
+		ConsolePanel consolePanel = new ConsolePanel();
+		consolePanel.setBounds(693, 5, 251, 641);
+		contentPane.add(consolePanel);
 	}	
 }
