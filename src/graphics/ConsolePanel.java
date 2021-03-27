@@ -5,12 +5,13 @@ import java.awt.Color;
 
 public class ConsolePanel extends JPanel {
 
+
 	public ConsolePanel() {
 		setBackground(Color.BLACK);
 		this.onCreate();
 	}
-	
+
 	private void onCreate() {
-		setBounds(0, 0, 314, 680); 
+		setBounds(0, 0, 314, 680);
 	}
 }
