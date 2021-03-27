@@ -11,7 +11,6 @@ public class ConsolePanel extends JPanel {
 	}
 	
 	private void onCreate() {
-		setLayout(null);
 		setBounds(0, 0, 314, 680); 
 	}
 }

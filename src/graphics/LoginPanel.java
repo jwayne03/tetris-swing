@@ -6,6 +6,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,6 +26,7 @@ public class LoginPanel extends JPanel {
 	private JPasswordField userPasswordField;
 	private MainMenuPanel mainMenuPanel;
 	private JButton btnNewButton;
+	private JDialog showErrorLogin;
 
 	public LoginPanel() {
 		setBackground(Color.CYAN);
@@ -35,6 +38,7 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 950, 680); 
 		btnNewButton = new JButton("LOGIN");
+		this.showErrorLogin = new JDialog();
 	
 		btnNewButton.setBounds(372, 175, 173,22);
 		add(btnNewButton);
@@ -70,16 +74,18 @@ public class LoginPanel extends JPanel {
 	}
 
 	public JButton getBtnNewButton() {
-		return btnNewButton;
+		return this.btnNewButton;
 	}
 
 	public JTextField getUserTextField() {
-		return userTextField;
+		return this.userTextField;
 	}
 
 	public JPasswordField getUserPasswordField() {
-		return userPasswordField;
+		return this.userPasswordField;
 	}
 	
-	
+	public JDialog getInvalidLogin() {
+		return this.showErrorLogin;
+	}	
 }

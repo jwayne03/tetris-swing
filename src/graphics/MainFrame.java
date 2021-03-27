@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
+import java.awt.FlowLayout;
 
 public class MainFrame extends JFrame {
 	
@@ -43,6 +44,7 @@ public class MainFrame extends JFrame {
 		
 		ConsolePanel consolePanel = new ConsolePanel();
 		mainMenuPanel.add(consolePanel);
+		consolePanel.setLayout(null);
 		
 		splitPane.setEnabled(false);
 		splitPane.setDividerLocation(1.0);

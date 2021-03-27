@@ -23,7 +23,7 @@ public class MainMenuPanel extends JPanel {
 	}
 
 	private void onCreate() {
-		setBounds(0, 0, 503, 544);
+		setBounds(0, 0, 528, 544);
 
 		String[] columns = new String[] { "Name", "SCORE", "DATE" };
 

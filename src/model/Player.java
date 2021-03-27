@@ -5,28 +5,28 @@ import java.util.Date;
 public class Player {
 	
 	private String name;
-	private int score;
-	private Date date;
+	private String password;
 	
 	public Player() {
 		
 	}
 	
-	public Player(String name, int score, Date date) {
+	public Player(String name, String password) {
 		this.name = name;
-		this.score = score;
-		this.date = date;
+		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public int getScore() {
-		return score;
+	public String getPassword() {
+		return password;
 	}
-
-	public Date getDate() {
-		return date;
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return name + " " + password;
 	}
 }
