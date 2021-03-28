@@ -17,13 +17,14 @@ public class MainMenuPanel extends JPanel {
 	private JPanel contentPanel;
 	private JTable table;
 	private JButton btnNewGameButton;
+	private JButton buttonLogOutButton;
 
 	public MainMenuPanel() {
 		this.onCreate();
 	}
 
 	private void onCreate() {
-		setBounds(0, 0, 528, 544);
+		setBounds(0, 0, 497, 541);
 
 		String[] columns = new String[] { "Name", "SCORE", "DATE" };
 
@@ -33,14 +34,11 @@ public class MainMenuPanel extends JPanel {
 		JTable table = new JTable(data, columns);
 		this.add(new JScrollPane(table));
 
-		btnNewGameButton = new JButton("New button");
-		btnNewGameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
+		btnNewGameButton = new JButton("New Game");
 		btnNewGameButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(btnNewGameButton);
+		buttonLogOutButton = new JButton("Log out");
+		add(buttonLogOutButton);
 		table = new JTable();
 		table.setBackground(Color.BLACK);
 		add(table);
@@ -48,5 +46,9 @@ public class MainMenuPanel extends JPanel {
 
 	public JButton getButtonNewGame() {
 		return btnNewGameButton;
+	}
+
+	public JButton getButtonLogOut() {
+		return this.buttonLogOutButton;
 	}
 }
