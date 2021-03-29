@@ -15,13 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import utils.Tetris;
 
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JSplitPane splitPane;
 	private ConsolePanel consolePanel;
-	
+	private JPanel panel;
 
 	public MainFrame() {
 		this.onCreate();
@@ -43,7 +44,42 @@ public class MainFrame extends JFrame {
 
 		splitPane.setBounds(10, 11, 924, 629);
 		contentPane.add(splitPane);
+		this.createLoginPanel();
 
+		this.panel = new JPanel();
+		panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		splitPane.setRightComponent(panel);
+		panel.setLayout(null);
+
+		this.createMainPanel();
+		this.createTetrisPanel();
+		this.createConsolePanel();
+
+	}
+
+	private void createMainPanel() {
+		MainMenuPanel mainMenuPanel = new MainMenuPanel();
+		mainMenuPanel.setBounds(0, 0, 512, 616);
+		mainMenuPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		panel.add(mainMenuPanel);
+	}
+
+	private void createTetrisPanel() {
+	}
+
+	private void createConsolePanel() {
+		this.consolePanel = new ConsolePanel();
+		consolePanel.setBounds(640, 0, 292, 640);
+		panel.add(consolePanel);
+		consolePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		Tetris tetris = new Tetris();
+		tetris.setBounds(640, 0, 292, 625);
+		panel.add(tetris);
+		tetris.setLayout(null);
+	}
+
+	private void createLoginPanel() {
 		LoginPanel loginPanel = new LoginPanel();
 		loginPanel.getBtnNewButton().setLocation(382, 175);
 		loginPanel.getUserPasswordField().setLocation(382, 131);
@@ -51,28 +87,6 @@ public class MainFrame extends JFrame {
 		splitPane.setLeftComponent(null);
 		splitPane.setDividerLocation(1.0);
 		splitPane.setDividerSize(1);
-
-		JPanel panel = new JPanel();
-		panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		splitPane.setRightComponent(panel);
-		panel.setLayout(null);
-
-		MainMenuPanel mainMenuPanel = new MainMenuPanel();
-		mainMenuPanel.setBounds(0, 0, 512, 616);
-		mainMenuPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		panel.add(mainMenuPanel);
-
-
-
-		this.consolePanel = new ConsolePanel();
-		consolePanel.setBounds(640, 0, 292, 640);
-		panel.add(consolePanel);
-		consolePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		TetrisPanel tetrisPanel = new TetrisPanel();
-		tetrisPanel.setBounds(640, 0, 292, 640);
-		panel.add(tetrisPanel);
-		tetrisPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 	}
 
 	public JSplitPane getJSplitPane() {
@@ -82,6 +96,4 @@ public class MainFrame extends JFrame {
 	public ConsolePanel getConsolePanel() {
 		return this.consolePanel;
 	}
-
-	
 }

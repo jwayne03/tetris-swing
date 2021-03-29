@@ -46,6 +46,10 @@ public class Tetris extends JPanel implements ActionListener {
 		clearBoard();
 		start();
 	}
+	
+	public boolean isPausedTheGame() {
+		return this.isPaused;
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (isFallingFinished) {

@@ -18,6 +18,8 @@ public class MainMenuPanel extends JPanel {
 	private JTable table;
 	private JButton btnNewGameButton;
 	private JButton buttonLogOutButton;
+	private JButton buttonOnClickEndGame;
+	private JButton buttonOnClickPause;
 
 	public MainMenuPanel() {
 		this.onCreate();
@@ -33,12 +35,35 @@ public class MainMenuPanel extends JPanel {
 
 		JTable table = new JTable(data, columns);
 		this.add(new JScrollPane(table));
-
+		this.createButtonNewGame();
+		this.createButtonEndGame();
+		this.createButtonOnPauseGame();
+		this.createButtonOnClickLogOut();
+		this.createScoreTable();
+	}
+	
+	private void createButtonNewGame () {
 		btnNewGameButton = new JButton("New Game");
 		btnNewGameButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(btnNewGameButton);
+	}
+	
+	private void createButtonEndGame() {
+		buttonOnClickEndGame = new JButton("End game");
+		add(buttonOnClickEndGame);
+	}
+	
+	private void createButtonOnPauseGame() {
+		JButton buttonOnClickPause = new JButton("Pause");
+		add(buttonOnClickPause);
+	}
+	
+	private void createButtonOnClickLogOut() {
 		buttonLogOutButton = new JButton("Log out");
 		add(buttonLogOutButton);
+	}
+	
+	private void createScoreTable() {
 		table = new JTable();
 		table.setBackground(Color.BLACK);
 		add(table);
@@ -50,5 +75,13 @@ public class MainMenuPanel extends JPanel {
 
 	public JButton getButtonLogOut() {
 		return this.buttonLogOutButton;
+	}
+	
+	public JButton getButtonEndGame() {
+		return this.buttonOnClickEndGame;
+	}
+	
+	public JButton getButtonOnPauseGame() {
+		return this.buttonOnClickPause;
 	}
 }

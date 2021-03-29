@@ -11,6 +11,7 @@ import graphics.MainFrame;
 import graphics.MainMenuPanel;
 import graphics.TetrisPanel;
 import model.Player;
+import utils.Tetris;
 
 public class Manager {
 
@@ -20,6 +21,7 @@ public class Manager {
 	private FileManagement fileManagement;
 	private ConsolePanel consolePanel;
 	private TetrisPanel tetrisPanel;
+	private Tetris tetris;
 
 	private List<Player> userAndPassword;
 
@@ -30,10 +32,12 @@ public class Manager {
 		this.userAndPassword = this.fileManagement.getUserLogin();
 		this.consolePanel = new ConsolePanel();
 		this.tetrisPanel = new TetrisPanel();
+		this.tetris = new Tetris();
 	}
 
 	public void start() {
 		this.loginPanel.setVisible(true);
+		this.tetris.setVisible(false);
 		this.mainFrame = new MainFrame();
 		this.setComponent();
 	}
@@ -41,8 +45,10 @@ public class Manager {
 	private void setComponent() {
 		this.mainFrame.getJSplitPane().setLeftComponent(loginPanel);
 		this.onClickLoggin();
-		this.onClickLogOut();
 		this.onClickNewGame();
+		this.onClickLogOut();
+		this.onPauseGame();
+		this.onClickEndGame();
 	}
 
 	private void onClickLoggin() {
@@ -85,8 +91,9 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				consolePanel.setFocusable(false);
-				tetrisPanel.setFocusable(true);
+				consolePanel.setVisible(false);
+				tetris.setVisible(true);
+				mainFrame.getJSplitPane().setRightComponent(tetris);
 			}
 		});
 	}
@@ -97,6 +104,30 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				mainFrame.getJSplitPane().setLeftComponent(loginPanel);
+				tetris.setVisible(false);
+			}
+		});
+	}
+	
+	private void onPauseGame() {
+		this.mainMenuPanel.getButtonOnPauseGame().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tetris.pause();
+				if (tetris.isPausedTheGame()) {
+					tetris.start();
+				}
+			}
+		});
+	}
+	
+	private void onClickEndGame() {
+		this.mainMenuPanel.getButtonEndGame().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
 			}
 		});
 	}

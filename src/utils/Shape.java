@@ -34,8 +34,7 @@ public class Shape {
 		pieceShape = shape;
 
 	}
-
-	/* Metodos Get y Set */
+	
 	private void setX(int index, int x) {
 		coords[index][0] = x;
 	}
