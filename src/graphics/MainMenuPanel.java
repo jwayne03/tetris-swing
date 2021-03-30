@@ -4,11 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import model.Score;
+
 import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -28,18 +32,22 @@ public class MainMenuPanel extends JPanel {
 	private void onCreate() {
 		setBounds(0, 0, 497, 541);
 
-		String[] columns = new String[] { "Name", "SCORE", "DATE" };
-
-		Object[][] data = new Object[][] { { "Wayne", "John", 40.0 }, { "Ivan", "Rambo", 70.0 },
-				{ "Elio", "Zorro", 60.0 }, };
-
-		JTable table = new JTable(data, columns);
-		this.add(new JScrollPane(table));
+		this.setDataIntoScoreBoard();
 		this.createButtonNewGame();
 		this.createButtonEndGame();
 		this.createButtonOnPauseGame();
 		this.createButtonOnClickLogOut();
 		this.createScoreTable();
+	}
+	
+	public void setDataIntoScoreBoard() {
+		String[] columns = new String[] { "Name", "SCORE", "DATE" };
+
+		Object[][] data = new Object[][] { { "Wayne", "John", 40.0 }, { "Ivan", "Rambo", 70.0 },
+				{ "Elio", "Zorro", 60.0 }, };
+
+		this.table = new JTable(data, columns);
+		this.add(new JScrollPane(table));
 	}
 	
 	private void createButtonNewGame () {
@@ -49,28 +57,32 @@ public class MainMenuPanel extends JPanel {
 	}
 	
 	private void createButtonEndGame() {
-		buttonOnClickEndGame = new JButton("End game");
-		add(buttonOnClickEndGame);
+		this.buttonOnClickEndGame = new JButton("End game");
+		this.add(buttonOnClickEndGame);
 	}
 	
 	private void createButtonOnPauseGame() {
-		JButton buttonOnClickPause = new JButton("Pause");
-		add(buttonOnClickPause);
+		this.buttonOnClickPause = new JButton("Pause");
+		this.add(buttonOnClickPause);
 	}
 	
 	private void createButtonOnClickLogOut() {
-		buttonLogOutButton = new JButton("Log out");
-		add(buttonLogOutButton);
+		this.buttonLogOutButton = new JButton("Log out");
+		this.add(buttonLogOutButton);
 	}
 	
 	private void createScoreTable() {
-		table = new JTable();
-		table.setBackground(Color.BLACK);
-		add(table);
+		this.table = new JTable();
+		this.table.setBackground(Color.BLACK);
+		this.add(table);
+	}
+
+	public JTable getTable() {
+		return table;
 	}
 
 	public JButton getButtonNewGame() {
-		return btnNewGameButton;
+		return this.btnNewGameButton;
 	}
 
 	public JButton getButtonLogOut() {

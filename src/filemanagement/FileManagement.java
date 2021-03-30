@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Player;
+import model.Score;
 
 public class FileManagement {
 
@@ -15,15 +16,15 @@ public class FileManagement {
 	private final String FOLDER_DATA = "data";
 	private final String LOGIN_FILE = "login";
 	private final String SCORE_FILE = "score";
-	
+
 	private File loginFile;
-	
+
 	public FileManagement() {
 		this.route();
 		this.loginFile = new File(route() + LOGIN_FILE + ".txt");
 	}
 
-	public String route() {
+	private String route() {
 		String route = System.getProperty("user.dir") + SEPARATOR + FOLDER_DATA;
 		File folder = new File(route);
 		if (!folder.exists()) {
@@ -56,11 +57,35 @@ public class FileManagement {
 		} else {
 			System.out.println("The file doesn't exist");
 		}
-		
+
 		for (Player player : userLogin) {
 			System.out.println(player.toString());
 		}
 
 		return userLogin;
+	}
+
+	public List<Score> getGameScore() {
+		List<Score> scores = new ArrayList<>();
+		File file = new File(route() + SCORE_FILE + ".txt");
+
+		if (file.exists()) {
+			try {
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+				String line = null;
+				assert line != null;
+
+				while ((line = bufferedReader.readLine()) != null) {
+					String[] data = line.split(" ");
+					// Score score = new Score(...);
+					// scores.add(score);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("The file doesn't exist");
+		}
+		return scores;
 	}
 }

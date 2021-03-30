@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import utils.Tetris;
+import java.awt.Cursor;
 
 public class MainFrame extends JFrame {
 
@@ -59,7 +60,13 @@ public class MainFrame extends JFrame {
 
 	private void createMainPanel() {
 		MainMenuPanel mainMenuPanel = new MainMenuPanel();
-		mainMenuPanel.setBounds(0, 0, 512, 616);
+		mainMenuPanel.getButtonLogOut().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mainMenuPanel.getButtonOnPauseGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mainMenuPanel.getButtonEndGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mainMenuPanel.getButtonNewGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mainMenuPanel.getButtonNewGame().setHorizontalTextPosition(SwingConstants.LEFT);
+		mainMenuPanel.getButtonNewGame().setHorizontalAlignment(SwingConstants.LEFT);
+		mainMenuPanel.setBounds(0, 0, 459, 616);
 		mainMenuPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.add(mainMenuPanel);
 	}
@@ -68,15 +75,15 @@ public class MainFrame extends JFrame {
 	}
 
 	private void createConsolePanel() {
-		this.consolePanel = new ConsolePanel();
-		consolePanel.setBounds(640, 0, 292, 640);
-		panel.add(consolePanel);
-		consolePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		Tetris tetris = new Tetris();
-		tetris.setBounds(640, 0, 292, 625);
+		tetris.setBounds(524, 0, 408, 625);
 		panel.add(tetris);
 		tetris.setLayout(null);
+		this.consolePanel = new ConsolePanel();
+		consolePanel.setBounds(524, 0, 389, 619);
+		panel.add(consolePanel);
+		consolePanel.setLayout(null);
 	}
 
 	private void createLoginPanel() {

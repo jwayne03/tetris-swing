@@ -2,15 +2,20 @@ package manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
+
+import javax.swing.JLabel;
 
 import filemanagement.FileManagement;
 import graphics.ConsolePanel;
 import graphics.LoginPanel;
 import graphics.MainFrame;
 import graphics.MainMenuPanel;
-import graphics.TetrisPanel;
 import model.Player;
+import model.Score;
 import utils.Tetris;
 
 public class Manager {
@@ -20,19 +25,22 @@ public class Manager {
 	private MainMenuPanel mainMenuPanel;
 	private FileManagement fileManagement;
 	private ConsolePanel consolePanel;
-	private TetrisPanel tetrisPanel;
 	private Tetris tetris;
 
 	private List<Player> userAndPassword;
+	private List<Score> scores;
 
+	private String user;
+	private int score;
+	
 	public Manager() {
 		this.fileManagement = new FileManagement();
 		this.loginPanel = new LoginPanel();
 		this.mainMenuPanel = new MainMenuPanel();
 		this.userAndPassword = this.fileManagement.getUserLogin();
 		this.consolePanel = new ConsolePanel();
-		this.tetrisPanel = new TetrisPanel();
 		this.tetris = new Tetris();
+		this.scores = new ArrayList<Score>();
 	}
 
 	public void start() {
@@ -44,10 +52,13 @@ public class Manager {
 
 	private void setComponent() {
 		this.mainFrame.getJSplitPane().setLeftComponent(loginPanel);
+		this.actionListeners();
+	}
+
+	private void actionListeners() {
 		this.onClickLoggin();
 		this.onClickNewGame();
 		this.onClickLogOut();
-		this.onPauseGame();
 		this.onClickEndGame();
 	}
 
@@ -57,6 +68,8 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (isUsernameAndPasswordCorrect()) {
+					mainMenuPanel.getButtonEndGame().setVisible(false);
+					mainMenuPanel.getButtonOnPauseGame().setVisible(false);
 					mainFrame.getJSplitPane().setRightComponent(consolePanel);
 					mainFrame.getJSplitPane().setLeftComponent(mainMenuPanel);
 				}
@@ -72,9 +85,9 @@ public class Manager {
 					System.out.println(player.getName() + " " + player.getPassword());
 					System.out.println(loginPanel.getUserTextField().getText() + " "
 							+ loginPanel.getUserPasswordField().getText());
+					user = player.getName();
 					return true;
 				} else {
-					System.out.println("ERROR");
 					this.loginPanel.getInvalidLogin().setVisible(true);
 					return false;
 				}
@@ -91,9 +104,13 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				consolePanel.setVisible(false);
-				tetris.setVisible(true);
+				isTetrisPanelVisible();
 				mainFrame.getJSplitPane().setRightComponent(tetris);
+				isButtonNewGameVisible();
+				isButtonEndGameVisible();
+				mainMenuPanel.getButtonOnPauseGame().setVisible(true);
+				tetris.setFocus();
+				onPauseGame();
 			}
 		});
 	}
@@ -104,31 +121,80 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				mainFrame.getJSplitPane().setLeftComponent(loginPanel);
-				tetris.setVisible(false);
+				isConsolePanelVisible();
+				mainMenuPanel.getButtonNewGame().setVisible(true);
+				isTetrisPanelVisible();
 			}
 		});
 	}
-	
+
 	private void onPauseGame() {
 		this.mainMenuPanel.getButtonOnPauseGame().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tetris.pause();
-				if (tetris.isPausedTheGame()) {
-					tetris.start();
-				}
 			}
 		});
 	}
-	
+
 	private void onClickEndGame() {
 		this.mainMenuPanel.getButtonEndGame().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				isButtonNewGameVisible();
+				isButtonEndGameVisible();
+				setPlayerScore();
 			}
 		});
+	}
+
+	private void setPlayerScore() {
+		this.tetris.getStatusbar().getText();
+		System.out.println(user + " " + this.tetris.getStatusbar().getText());
+		this.score = Integer.parseInt(this.tetris.getStatusbar().getText());
+		Score score = new Score(this.user, this.score, new Date());
+		this.scores.add(score);
+	}
+
+	private boolean isTetrisPanelVisible() {
+		if (!this.tetris.isVisible()) {
+			this.tetris.setVisible(true);
+			return true;
+		} else {
+			this.tetris.setVisible(false);
+			return false;
+		}
+	}
+
+	private boolean isConsolePanelVisible() {
+		if (!this.consolePanel.isVisible()) {
+			this.consolePanel.setVisible(true);
+			return true;
+		} else {
+			this.consolePanel.setVisible(false);
+			return false;
+		}
+	}
+
+	private boolean isButtonEndGameVisible() {
+		if (this.mainMenuPanel.getButtonEndGame().isVisible()) {
+			this.mainMenuPanel.getButtonEndGame().setVisible(false);
+			return true;
+		} else {
+			this.mainMenuPanel.getButtonEndGame().setVisible(true);
+			return false;
+		}
+	}
+
+	private boolean isButtonNewGameVisible() {
+		if (this.mainMenuPanel.getButtonNewGame().isVisible()) {
+			this.mainMenuPanel.getButtonNewGame().setVisible(false);
+			return true;
+		} else {
+			this.mainMenuPanel.getButtonNewGame().setVisible(true);
+			return false;
+		}
 	}
 }

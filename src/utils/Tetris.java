@@ -47,6 +47,10 @@ public class Tetris extends JPanel implements ActionListener {
 		start();
 	}
 	
+	public JLabel getStatusbar() {
+		return statusbar;
+	}
+
 	public boolean isPausedTheGame() {
 		return this.isPaused;
 	}
