@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TreeSet;
-
-import javax.swing.JLabel;
 
 import filemanagement.FileManagement;
 import graphics.ConsolePanel;
@@ -31,8 +28,8 @@ public class Manager {
 	private List<Score> scores;
 
 	private String user;
-	private int score;
-	
+	private String score;
+
 	public Manager() {
 		this.fileManagement = new FileManagement();
 		this.loginPanel = new LoginPanel();
@@ -57,9 +54,7 @@ public class Manager {
 
 	private void actionListeners() {
 		this.onClickLoggin();
-		this.onClickNewGame();
-		this.onClickLogOut();
-		this.onClickEndGame();
+		this.checkButtons();
 	}
 
 	private void onClickLoggin() {
@@ -79,6 +74,7 @@ public class Manager {
 
 	@SuppressWarnings("deprecation")
 	private boolean isUsernameAndPasswordCorrect() {
+
 		for (Player player : userAndPassword) {
 			if (player.getName().equals(loginPanel.getUserTextField().getText())) {
 				if (player.getPassword().equals(loginPanel.getUserPasswordField().getText())) {
@@ -89,46 +85,41 @@ public class Manager {
 					return true;
 				} else {
 					this.loginPanel.getInvalidLogin().setVisible(true);
-					return false;
 				}
 			} else {
 				this.loginPanel.getInvalidLogin().setVisible(true);
-				return false;
 			}
 		}
 		return false;
 	}
 
-	private void onClickNewGame() {
+	private void checkButtons() {
 		this.mainMenuPanel.getButtonNewGame().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				isTetrisPanelVisible();
-				mainFrame.getJSplitPane().setRightComponent(tetris);
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
 				mainMenuPanel.getButtonOnPauseGame().setVisible(true);
+				
 				tetris.setFocus();
-				onPauseGame();
+				tetris.start();
 			}
 		});
-	}
 
-	private void onClickLogOut() {
 		this.mainMenuPanel.getButtonLogOut().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				mainFrame.getJSplitPane().setLeftComponent(loginPanel);
-				isConsolePanelVisible();
+				mainFrame.getJSplitPane().getRightComponent().setVisible(false);
+				consolePanel.setVisible(false);
 				mainMenuPanel.getButtonNewGame().setVisible(true);
-				isTetrisPanelVisible();
+				tetris.setVisible(false);
 			}
 		});
-	}
 
-	private void onPauseGame() {
 		this.mainMenuPanel.getButtonOnPauseGame().addActionListener(new ActionListener() {
 
 			@Override
@@ -136,15 +127,15 @@ public class Manager {
 				tetris.pause();
 			}
 		});
-	}
 
-	private void onClickEndGame() {
 		this.mainMenuPanel.getButtonEndGame().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
+				mainFrame.getJSplitPane().setRightComponent(consolePanel);
+				tetris.pause();
 				setPlayerScore();
 			}
 		});
@@ -153,14 +144,16 @@ public class Manager {
 	private void setPlayerScore() {
 		this.tetris.getStatusbar().getText();
 		System.out.println(user + " " + this.tetris.getStatusbar().getText());
-		this.score = Integer.parseInt(this.tetris.getStatusbar().getText());
+		this.score = this.tetris.getStatusbar().getText();
 		Score score = new Score(this.user, this.score, new Date());
 		this.scores.add(score);
+		this.fileManagement.saveScoreData(scores);
 	}
 
 	private boolean isTetrisPanelVisible() {
 		if (!this.tetris.isVisible()) {
 			this.tetris.setVisible(true);
+			mainFrame.getJSplitPane().setRightComponent(tetris);
 			return true;
 		} else {
 			this.tetris.setVisible(false);

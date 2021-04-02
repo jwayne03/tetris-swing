@@ -52,22 +52,26 @@ public class MainMenuPanel extends JPanel {
 	
 	private void createButtonNewGame () {
 		btnNewGameButton = new JButton("New Game");
+		btnNewGameButton.setFocusable(false);
 		btnNewGameButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(btnNewGameButton);
 	}
 	
 	private void createButtonEndGame() {
 		this.buttonOnClickEndGame = new JButton("End game");
+		buttonOnClickEndGame.setFocusable(false);
 		this.add(buttonOnClickEndGame);
 	}
 	
 	private void createButtonOnPauseGame() {
 		this.buttonOnClickPause = new JButton("Pause");
+		buttonOnClickPause.setFocusable(false);
 		this.add(buttonOnClickPause);
 	}
 	
 	private void createButtonOnClickLogOut() {
 		this.buttonLogOutButton = new JButton("Log out");
+		buttonLogOutButton.setFocusable(false);
 		this.add(buttonLogOutButton);
 	}
 	

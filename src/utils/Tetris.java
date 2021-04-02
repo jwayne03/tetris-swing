@@ -32,8 +32,8 @@ public class Tetris extends JPanel implements ActionListener {
 	public Tetris() {
 		setFocusable(true);
 		requestFocus();
-		setBounds(0, 23, 186, 327);
-		setMinimumSize(new Dimension(186, 13));
+		setBounds(577, 0, 355, 625);
+		setPreferredSize(new Dimension(355, 625));
 		curPiece = new Shape();
 		timer = new Timer(400, this);
 		timer.start();

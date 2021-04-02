@@ -1,8 +1,10 @@
 package filemanagement;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -87,5 +89,20 @@ public class FileManagement {
 			System.out.println("The file doesn't exist");
 		}
 		return scores;
+	}
+	
+	public void saveScoreData(List<Score> scores) {
+		File scoreFile = new File(route() + SCORE_FILE + ".txt");
+		
+		try {
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(scoreFile, true));
+			if (scoreFile.exists()) {
+				bufferedWriter.write(scores.get(scores.size() - 1).toString());
+				bufferedWriter.newLine();
+			}
+			bufferedWriter.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
