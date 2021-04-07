@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
 	private void onCreate() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Tetris");
-		setBounds(100, 100, 950, 680);
+		setBounds(100, 100, 1200, 720);
 		setVisible(true);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
 		splitPane = new JSplitPane();
 		splitPane.setEnabled(false);
 
-		splitPane.setBounds(10, 11, 940, 670);
+		splitPane.setBounds(6, 11,  1204, 652);
 		contentPane.add(splitPane);
 		this.createLoginPanel();
 
@@ -61,6 +61,10 @@ public class MainFrame extends JFrame {
 	private void createMainPanel() {
 		MainMenuPanel mainMenuPanel = new MainMenuPanel();
 		mainMenuPanel.getButtonNewGame().setVerticalAlignment(SwingConstants.CENTER);
+		mainMenuPanel.getButtonLogOut().setBounds(304, 471, 92, 29);
+		mainMenuPanel.getButtonOnPauseGame().setBounds(304, 430, 80, 29);
+		mainMenuPanel.getButtonEndGame().setBounds(194, 430, 105, 29);
+		mainMenuPanel.getButtonNewGame().setBounds(189, 471, 110, 29);
 		mainMenuPanel.getButtonLogOut().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mainMenuPanel.getButtonOnPauseGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mainMenuPanel.getButtonEndGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -71,16 +75,16 @@ public class MainFrame extends JFrame {
 		mainMenuPanel.setPreferredSize(new Dimension(565, 616));
 		mainMenuPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.add(mainMenuPanel);
-		mainMenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		mainMenuPanel.add(mainMenuPanel.getButtonNewGame());
 		mainMenuPanel.add(mainMenuPanel.getButtonEndGame());
 		mainMenuPanel.add(mainMenuPanel.getButtonOnPauseGame());
 		mainMenuPanel.add(mainMenuPanel.getButtonLogOut());
-		mainMenuPanel.add(mainMenuPanel.getTable());
+		mainMenuPanel.setLayout(null);
 	}
 
 	private void createConsolePanel() {
 		Tetris tetris = new Tetris();
+		tetris.setBounds(577, 0, 612, 616);
 		panel.add(tetris);
 		tetris.setLayout(null);
 		this.consolePanel = new ConsolePanel();

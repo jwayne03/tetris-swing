@@ -102,7 +102,7 @@ public class Manager {
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
 				mainMenuPanel.getButtonOnPauseGame().setVisible(true);
-				
+
 				tetris.setFocus();
 				tetris.start();
 			}
@@ -154,6 +154,7 @@ public class Manager {
 		if (!this.tetris.isVisible()) {
 			this.tetris.setVisible(true);
 			mainFrame.getJSplitPane().setRightComponent(tetris);
+			mainFrame.getJSplitPane().setDividerLocation(600);
 			return true;
 		} else {
 			this.tetris.setVisible(false);
@@ -164,6 +165,7 @@ public class Manager {
 	private boolean isConsolePanelVisible() {
 		if (!this.consolePanel.isVisible()) {
 			this.consolePanel.setVisible(true);
+			mainFrame.getJSplitPane().setDividerLocation(600);
 			return true;
 		} else {
 			this.consolePanel.setVisible(false);
