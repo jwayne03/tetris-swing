@@ -36,13 +36,12 @@ public class Manager {
 		this.mainMenuPanel = new MainMenuPanel();
 		this.userAndPassword = this.fileManagement.getUserLogin();
 		this.consolePanel = new ConsolePanel();
-		this.tetris = new Tetris();
 		this.scores = new ArrayList<Score>();
 	}
 
 	public void start() {
 		this.loginPanel.setVisible(true);
-		this.tetris.setVisible(false);
+		
 		this.mainFrame = new MainFrame();
 		this.setComponent();
 	}
@@ -63,6 +62,7 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (isUsernameAndPasswordCorrect()) {
+					consolePanel.getTextArea().append("CONSOLE: \n Correct user authentication \n");
 					mainMenuPanel.getButtonEndGame().setVisible(false);
 					mainMenuPanel.getButtonOnPauseGame().setVisible(false);
 					consolePanel.setVisible(true);
@@ -75,7 +75,6 @@ public class Manager {
 
 	@SuppressWarnings("deprecation")
 	private boolean isUsernameAndPasswordCorrect() {
-
 		for (Player player : userAndPassword) {
 			if (player.getName().equals(loginPanel.getUserTextField().getText())) {
 				if (player.getPassword().equals(loginPanel.getUserPasswordField().getText())) {
@@ -99,6 +98,8 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				consolePanel.getTextArea().append("--> NEW GAME <-- \n");
+				tetris = new Tetris();
 				tetris.setVisible(true);
 				mainFrame.getJSplitPane().setRightComponent(tetris);
 				isButtonNewGameVisible();
@@ -117,7 +118,7 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				mainFrame.getJSplitPane().setLeftComponent(loginPanel);
-				mainFrame.getJSplitPane().setRightComponent(consolePanel);;
+				mainFrame.getJSplitPane().setRightComponent(consolePanel);
 				consolePanel.setVisible(false);
 				mainMenuPanel.getButtonNewGame().setVisible(true);
 				tetris.setVisible(false);
@@ -128,6 +129,7 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				consolePanel.getTextArea().append("PAUSE \n");
 				tetris.pause();
 			}
 		});
@@ -136,6 +138,7 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				consolePanel.getTextArea().append("--> END GAME <-- \n");
 				tetris.setVisible(false);
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();

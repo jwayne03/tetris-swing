@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import utils.Tetris;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.TextArea;
 
 public class MainFrame extends JFrame {
 
@@ -25,6 +26,7 @@ public class MainFrame extends JFrame {
 	private JSplitPane splitPane;
 	private ConsolePanel consolePanel;
 	private JPanel panel;
+	private Tetris tetris;
 
 	public MainFrame() {
 		this.onCreate();
@@ -33,7 +35,7 @@ public class MainFrame extends JFrame {
 	private void onCreate() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Tetris");
-		setBounds(100, 100, 1200, 720);
+		setBounds(100, 100, 1000, 720);
 		setVisible(true);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -44,7 +46,7 @@ public class MainFrame extends JFrame {
 		splitPane = new JSplitPane();
 		splitPane.setEnabled(false);
 
-		splitPane.setBounds(6, 11,  1204, 652);
+		splitPane.setBounds(6, 11, 1204, 652);
 		contentPane.add(splitPane);
 		this.createLoginPanel();
 
@@ -70,7 +72,7 @@ public class MainFrame extends JFrame {
 		mainMenuPanel.getButtonEndGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mainMenuPanel.getButtonNewGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mainMenuPanel.getButtonNewGame().setHorizontalTextPosition(SwingConstants.CENTER);
-		mainMenuPanel.setBounds(0, 0, 691, 616);
+		mainMenuPanel.setBounds(0, 0, 586, 616);
 		mainMenuPanel.setPreferredSize(new Dimension(565, 616));
 		mainMenuPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.add(mainMenuPanel);
@@ -82,12 +84,13 @@ public class MainFrame extends JFrame {
 	}
 
 	private void createConsolePanel() {
-		Tetris tetris = new Tetris();
-		tetris.setBounds(701, 0, 488, 616);
+		tetris = new Tetris();
+		tetris.setBounds(590, 0, 318, 616);
 		panel.add(tetris);
 		tetris.setLayout(null);
 		this.consolePanel = new ConsolePanel();
-		consolePanel.setBounds(701, 0, 488, 616);
+		consolePanel.getTextArea().setBounds(0, 0, 307, 680);
+		consolePanel.setBounds(598, 0, 392, 616);
 		consolePanel.setPreferredSize(new Dimension(565, 616));
 		panel.add(consolePanel);
 		consolePanel.setLayout(null);
@@ -114,4 +117,5 @@ public class MainFrame extends JFrame {
 	public JPanel getPanel() {
 		return this.panel;
 	}
+
 }
