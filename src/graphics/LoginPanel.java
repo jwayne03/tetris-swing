@@ -37,11 +37,11 @@ public class LoginPanel extends JPanel {
 
 	private void onCreateLoginFrame() {
 		setLayout(null);
-		setBounds(0, 0, 950, 680);
+		setBounds(0, 0, 1058, 680);
 		btnNewButton = new JButton("LOGIN");
 		this.showErrorLogin = new JDialog();
 
-		btnNewButton.setBounds(372, 175, 173, 22);
+		btnNewButton.setBounds(524, 178, 173, 33);
 		add(btnNewButton);
 
 		this.userAndPasswordTextField();
@@ -56,22 +56,22 @@ public class LoginPanel extends JPanel {
 
 	private void userAndPasswordLabel() {
 		Label usernameLabel = new Label("Username: ");
-		usernameLabel.setBounds(142, 105, 101, 22);
+		usernameLabel.setBounds(373, 93, 109, 27);
 		add(usernameLabel);
 
 		Label passwordLabel = new Label("Password: ");
-		passwordLabel.setBounds(142, 148, 101, 22);
+		passwordLabel.setBounds(373, 142, 101, 22);
 		add(passwordLabel);
 	}
 
 	private void userAndPasswordTextField() {
 		userTextField = new JTextField();
-		userTextField.setBounds(372, 88, 173, 33);
+		userTextField.setBounds(524, 87, 173, 33);
 		add(userTextField);
 		userTextField.setColumns(10);
 
 		userPasswordField = new JPasswordField();
-		userPasswordField.setBounds(372, 131, 173, 33);
+		userPasswordField.setBounds(524, 131, 173, 33);
 		add(userPasswordField);
 	}
 
@@ -91,7 +91,7 @@ public class LoginPanel extends JPanel {
 		JLabel showUsernameOrPasswordIncorrect = new JLabel("Username or password incorrect");
 		JPanel showUserPassPanel = new JPanel();
 		showUserPassPanel.add(showUsernameOrPasswordIncorrect);
-		this.showErrorLogin.add(showUserPassPanel);
+		this.showErrorLogin.getContentPane().add(showUserPassPanel);
 		this.showErrorLogin.setSize(240, 130);
 		this.showErrorLogin.setVisible(true);
 		this.showErrorLogin.setResizable(false);

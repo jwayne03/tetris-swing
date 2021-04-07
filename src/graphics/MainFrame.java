@@ -69,9 +69,8 @@ public class MainFrame extends JFrame {
 		mainMenuPanel.getButtonOnPauseGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mainMenuPanel.getButtonEndGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mainMenuPanel.getButtonNewGame().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		mainMenuPanel.getButtonNewGame().setHorizontalTextPosition(SwingConstants.LEFT);
-		mainMenuPanel.getButtonNewGame().setHorizontalAlignment(SwingConstants.LEFT);
-		mainMenuPanel.setBounds(0, 0, 565, 616);
+		mainMenuPanel.getButtonNewGame().setHorizontalTextPosition(SwingConstants.CENTER);
+		mainMenuPanel.setBounds(0, 0, 691, 616);
 		mainMenuPanel.setPreferredSize(new Dimension(565, 616));
 		mainMenuPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.add(mainMenuPanel);
@@ -84,11 +83,11 @@ public class MainFrame extends JFrame {
 
 	private void createConsolePanel() {
 		Tetris tetris = new Tetris();
-		tetris.setBounds(577, 0, 612, 616);
+		tetris.setBounds(701, 0, 488, 616);
 		panel.add(tetris);
 		tetris.setLayout(null);
 		this.consolePanel = new ConsolePanel();
-		consolePanel.setBounds(579, 0, 356, 616);
+		consolePanel.setBounds(701, 0, 488, 616);
 		consolePanel.setPreferredSize(new Dimension(565, 616));
 		panel.add(consolePanel);
 		consolePanel.setLayout(null);

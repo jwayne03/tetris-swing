@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
 
 public class MainMenuPanel extends JPanel {
 
@@ -45,15 +46,16 @@ public class MainMenuPanel extends JPanel {
 
 		Object[][] data = new Object[][] { { "Wayne", "John", 40.0 }, { "Ivan", "Rambo", 70.0 },
 				{ "Elio", "Zorro", 60.0 }, };
+		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		this.table = new JTable(data, columns);
-		this.add(new JScrollPane(table));
+		JScrollPane scrollPane = new JScrollPane(table);
+		this.add(scrollPane);
 	}
 	
 	private void createButtonNewGame () {
 		btnNewGameButton = new JButton("New Game");
 		btnNewGameButton.setFocusable(false);
-		btnNewGameButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(btnNewGameButton);
 	}
 	

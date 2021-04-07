@@ -65,6 +65,7 @@ public class Manager {
 				if (isUsernameAndPasswordCorrect()) {
 					mainMenuPanel.getButtonEndGame().setVisible(false);
 					mainMenuPanel.getButtonOnPauseGame().setVisible(false);
+					consolePanel.setVisible(true);
 					mainFrame.getJSplitPane().setRightComponent(consolePanel);
 					mainFrame.getJSplitPane().setLeftComponent(mainMenuPanel);
 				}
@@ -98,13 +99,16 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				isTetrisPanelVisible();
+				tetris.setVisible(true);
+				mainFrame.getJSplitPane().setRightComponent(tetris);
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
 				mainMenuPanel.getButtonOnPauseGame().setVisible(true);
 
 				tetris.setFocus();
-				tetris.start();
+				if (tetris.isPausedTheGame()) {
+					tetris.start();
+				}
 			}
 		});
 
@@ -113,7 +117,7 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				mainFrame.getJSplitPane().setLeftComponent(loginPanel);
-				mainFrame.getJSplitPane().getRightComponent().setVisible(false);
+				mainFrame.getJSplitPane().setRightComponent(consolePanel);;
 				consolePanel.setVisible(false);
 				mainMenuPanel.getButtonNewGame().setVisible(true);
 				tetris.setVisible(false);
@@ -132,6 +136,7 @@ public class Manager {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tetris.setVisible(false);
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
 				mainFrame.getJSplitPane().setRightComponent(consolePanel);
