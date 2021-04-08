@@ -48,6 +48,7 @@ public class Manager {
 
 	private void setComponent() {
 		this.mainFrame.getJSplitPane().setLeftComponent(loginPanel);
+		this.mainFrame.getJSplitPane().setDividerLocation(1.0);
 		this.actionListeners();
 	}
 
@@ -68,6 +69,7 @@ public class Manager {
 					consolePanel.setVisible(true);
 					mainFrame.getJSplitPane().setRightComponent(consolePanel);
 					mainFrame.getJSplitPane().setLeftComponent(mainMenuPanel);
+					mainFrame.getJSplitPane().setDividerLocation(700);
 				}
 			}
 		});
@@ -102,6 +104,7 @@ public class Manager {
 				tetris = new Tetris();
 				tetris.setVisible(true);
 				mainFrame.getJSplitPane().setRightComponent(tetris);
+				mainFrame.getJSplitPane().setDividerLocation(700);
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
 				mainMenuPanel.getButtonOnPauseGame().setVisible(true);
@@ -143,6 +146,8 @@ public class Manager {
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
 				mainFrame.getJSplitPane().setRightComponent(consolePanel);
+				mainFrame.getJSplitPane().setLeftComponent(mainMenuPanel);
+				mainFrame.getJSplitPane().setDividerLocation(700);
 				tetris.pause();
 				setPlayerScore();
 			}
