@@ -5,9 +5,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import model.Player;
 import model.Score;
@@ -78,9 +80,10 @@ public class FileManagement {
 				assert line != null;
 
 				while ((line = bufferedReader.readLine()) != null) {
-					String[] data = line.split(" ");
-					// Score score = new Score(...);
-					// scores.add(score);
+					String[] data = line.split(",");
+					Score score = new Score(data[0], data[1],
+							new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH).parse(data[2]));
+					scores.add(score);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -90,10 +93,10 @@ public class FileManagement {
 		}
 		return scores;
 	}
-	
+
 	public void saveScoreData(List<Score> scores) {
 		File scoreFile = new File(route() + SCORE_FILE + ".txt");
-		
+
 		try {
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(scoreFile, true));
 			if (scoreFile.exists()) {

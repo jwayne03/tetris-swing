@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import model.Score;
 
@@ -41,48 +42,47 @@ public class MainMenuPanel extends JPanel {
 		this.createButtonOnClickLogOut();
 		this.createScoreTable();
 	}
-	
+
 	public void setDataIntoScoreBoard() {
 		String[] columns = new String[] { "Name", "SCORE", "DATE" };
 
-		Object[][] data = new Object[][] { { "Wayne", "John", 40.0 }, { "Ivan", "Rambo", 70.0 },
-				{ "Elio", "Zorro", 60.0 }, };
 		setLayout(null);
 
-		this.table = new JTable(data, columns);
+		this.table = new JTable();
+		this.table.setModel(new DefaultTableModel(new String[][] {}, columns));
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(21, 5, 454, 420);
 		this.add(scrollPane);
 	}
-	
-	private void createButtonNewGame () {
+
+	private void createButtonNewGame() {
 		btnNewGameButton = new JButton("New Game");
 		btnNewGameButton.setBounds(46, 457, 110, 29);
 		btnNewGameButton.setFocusable(false);
 		add(btnNewGameButton);
 	}
-	
+
 	private void createButtonEndGame() {
 		this.buttonOnClickEndGame = new JButton("End game");
 		buttonOnClickEndGame.setBounds(165, 457, 105, 29);
 		buttonOnClickEndGame.setFocusable(false);
 		this.add(buttonOnClickEndGame);
 	}
-	
+
 	private void createButtonOnPauseGame() {
 		this.buttonOnClickPause = new JButton("Pause");
 		buttonOnClickPause.setBounds(279, 457, 80, 29);
 		buttonOnClickPause.setFocusable(false);
 		this.add(buttonOnClickPause);
 	}
-	
+
 	private void createButtonOnClickLogOut() {
 		this.buttonLogOutButton = new JButton("Log out");
 		buttonLogOutButton.setBounds(370, 457, 92, 29);
 		buttonLogOutButton.setFocusable(false);
 		this.add(buttonLogOutButton);
 	}
-	
+
 	private void createScoreTable() {
 	}
 
@@ -97,11 +97,11 @@ public class MainMenuPanel extends JPanel {
 	public JButton getButtonLogOut() {
 		return this.buttonLogOutButton;
 	}
-	
+
 	public JButton getButtonEndGame() {
 		return this.buttonOnClickEndGame;
 	}
-	
+
 	public JButton getButtonOnPauseGame() {
 		return this.buttonOnClickPause;
 	}

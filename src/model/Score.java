@@ -16,6 +16,20 @@ public class Score {
 	
 	@Override
 	public String toString() {
-		return player + " " + score + " " + date;
+		return player + "," + score + "," + date;
 	}
+
+	public String getPlayer() {
+		return player;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+	
+	
 }

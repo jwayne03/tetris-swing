@@ -2,9 +2,10 @@ package manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
 
 import filemanagement.FileManagement;
 import graphics.ConsolePanel;
@@ -36,12 +37,12 @@ public class Manager {
 		this.mainMenuPanel = new MainMenuPanel();
 		this.userAndPassword = this.fileManagement.getUserLogin();
 		this.consolePanel = new ConsolePanel();
-		this.scores = new ArrayList<Score>();
+		this.scores = this.fileManagement.getGameScore();
 	}
 
 	public void start() {
 		this.loginPanel.setVisible(true);
-		
+		System.out.println(scores.toString());
 		this.mainFrame = new MainFrame();
 		this.setComponent();
 	}
@@ -53,6 +54,7 @@ public class Manager {
 	}
 
 	private void actionListeners() {
+		this.consolePanel.getTextArea().append("CONSOLE: \n ");
 		this.onClickLoggin();
 		this.checkButtons();
 	}
@@ -63,7 +65,10 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (isUsernameAndPasswordCorrect()) {
-					consolePanel.getTextArea().append("CONSOLE: \n Correct user authentication \n");
+
+					saveScore();
+					consolePanel.getTextArea().append("Correct user authentication \n");
+					consolePanel.getTextArea().append("PANEL: " + user + "\n");
 					mainMenuPanel.getButtonEndGame().setVisible(false);
 					mainMenuPanel.getButtonOnPauseGame().setVisible(false);
 					consolePanel.setVisible(true);
@@ -142,6 +147,7 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				consolePanel.getTextArea().append("--> END GAME <-- \n");
+				consolePanel.getTextArea().append("PANEL: " + user + "\n");
 				tetris.setVisible(false);
 				isButtonNewGameVisible();
 				isButtonEndGameVisible();
@@ -150,40 +156,26 @@ public class Manager {
 				mainFrame.getJSplitPane().setDividerLocation(700);
 				tetris.pause();
 				setPlayerScore();
+				saveScore();
 			}
 		});
+	}
+
+	private void saveScore() {
+		DefaultTableModel defaultTableModel = (DefaultTableModel) this.mainMenuPanel.getTable().getModel();
+		defaultTableModel.getDataVector().clear();
+		for (Score score : scores) {
+			defaultTableModel.addRow(new Object[] { score.getPlayer(), score.getScore(), score.getDate() });
+		}
 	}
 
 	private void setPlayerScore() {
 		this.tetris.getStatusbar().getText();
 		System.out.println(user + " " + this.tetris.getStatusbar().getText());
-		this.score = this.tetris.getStatusbar().getText();
+		this.score = String.valueOf(this.tetris.getPuntos());
 		Score score = new Score(this.user, this.score, new Date());
 		this.scores.add(score);
 		this.fileManagement.saveScoreData(scores);
-	}
-
-	private boolean isTetrisPanelVisible() {
-		if (!this.tetris.isVisible()) {
-			this.tetris.setVisible(true);
-			mainFrame.getJSplitPane().setRightComponent(tetris);
-			mainFrame.getJSplitPane().setDividerLocation(600);
-			return true;
-		} else {
-			this.tetris.setVisible(false);
-			return false;
-		}
-	}
-
-	private boolean isConsolePanelVisible() {
-		if (!this.consolePanel.isVisible()) {
-			this.consolePanel.setVisible(true);
-			mainFrame.getJSplitPane().setDividerLocation(600);
-			return true;
-		} else {
-			this.consolePanel.setVisible(false);
-			return false;
-		}
 	}
 
 	private boolean isButtonEndGameVisible() {

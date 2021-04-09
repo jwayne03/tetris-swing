@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
 
 		splitPane = new JSplitPane();
 
-		splitPane.setBounds(6, 11, 1000, 720);
+		splitPane.setBounds(6, 11, 1000, 675);
 		contentPane.add(splitPane);
 		
 		splitPane.setRightComponent(new JPanel());
