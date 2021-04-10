@@ -46,7 +46,7 @@ public class Tetris extends JPanel implements ActionListener {
 		clearBoard();
 		start();
 	}
-	
+
 	public JLabel getStatusbar() {
 		return statusbar;
 	}

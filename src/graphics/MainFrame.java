@@ -6,29 +6,27 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Component;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import utils.Tetris;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.TextArea;
 
+/**
+ * @author alu2017243
+ *
+ */
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JSplitPane splitPane;
 
+	/**
+	 * Constructor that calls a method to create the interface of the mainframe
+	 * 
+	 */
 	public MainFrame() {
 		this.onCreate();
 	}
 
+	/**
+	 * Method to create the interface
+	 */
 	private void onCreate() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Tetris");
@@ -44,16 +42,18 @@ public class MainFrame extends JFrame {
 
 		splitPane.setBounds(6, 11, 1000, 675);
 		contentPane.add(splitPane);
-		
+
 		splitPane.setRightComponent(new JPanel());
 		splitPane.setLeftComponent(new JPanel());
 	}
 
+	/**
+	 * This JSplitPane it uses to split a panel into two panels. Uses specially to
+	 * the consolePanel or Tetris
+	 * 
+	 * @return JSplitPane
+	 */
 	public JSplitPane getJSplitPane() {
 		return splitPane;
 	}
-	
-	
-	
-	
 }

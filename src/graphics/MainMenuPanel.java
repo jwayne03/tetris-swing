@@ -28,6 +28,10 @@ public class MainMenuPanel extends JPanel {
 	private JButton buttonOnClickEndGame;
 	private JButton buttonOnClickPause;
 
+	/**
+	 * Constructor that calls a method to create all the interface of the Panel
+	 * 
+	 */
 	public MainMenuPanel() {
 		this.onCreate();
 	}
@@ -43,6 +47,11 @@ public class MainMenuPanel extends JPanel {
 		this.createScoreTable();
 	}
 
+	/**
+	 * This method is encharged to fill all the data into the table that contains a
+	 * scroll pane if the table has more data that the user can scroll
+	 * 
+	 */
 	public void setDataIntoScoreBoard() {
 		String[] columns = new String[] { "Name", "SCORE", "DATE" };
 
@@ -86,22 +95,47 @@ public class MainMenuPanel extends JPanel {
 	private void createScoreTable() {
 	}
 
+	/**
+	 * Getter to get the table
+	 * 
+	 * @return JTable
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Getter to get the button
+	 * 
+	 * @return JButton
+	 */
 	public JButton getButtonNewGame() {
 		return this.btnNewGameButton;
 	}
 
+	/**
+	 * Getter to get the table
+	 * 
+	 * @return
+	 */
 	public JButton getButtonLogOut() {
 		return this.buttonLogOutButton;
 	}
 
+	/**
+	 * Getter to get the button
+	 * 
+	 * @return JButton
+	 */
 	public JButton getButtonEndGame() {
 		return this.buttonOnClickEndGame;
 	}
 
+	/**
+	 * Getter to get the button
+	 * 
+	 * @return JButton
+	 */
 	public JButton getButtonOnPauseGame() {
 		return this.buttonOnClickPause;
 	}

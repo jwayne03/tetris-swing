@@ -29,6 +29,10 @@ public class LoginPanel extends JPanel {
 	private JDialog showErrorLogin;
 	private JButton clickButton;
 
+	/**
+	 * This constructor create the layout of the login panel
+	 * 
+	 */
 	public LoginPanel() {
 		setBackground(Color.CYAN);
 		this.onCreateLoginFrame();
@@ -41,7 +45,7 @@ public class LoginPanel extends JPanel {
 		btnNewButton = new JButton("LOGIN");
 		this.showErrorLogin = new JDialog();
 
-		btnNewButton.setBounds(524, 178, 173, 33);
+		btnNewButton.setBounds(424, 178, 173, 33);
 		add(btnNewButton);
 
 		this.userAndPasswordTextField();
@@ -56,37 +60,58 @@ public class LoginPanel extends JPanel {
 
 	private void userAndPasswordLabel() {
 		Label usernameLabel = new Label("Username: ");
-		usernameLabel.setBounds(373, 93, 109, 27);
+		usernameLabel.setBounds(332, 93, 89, 33);
 		add(usernameLabel);
 
 		Label passwordLabel = new Label("Password: ");
-		passwordLabel.setBounds(373, 142, 101, 22);
+		passwordLabel.setBounds(332, 142, 89, 25);
 		add(passwordLabel);
 	}
 
 	private void userAndPasswordTextField() {
 		userTextField = new JTextField();
-		userTextField.setBounds(524, 87, 173, 33);
+		userTextField.setBounds(424, 93, 173, 33);
 		add(userTextField);
 		userTextField.setColumns(10);
 
 		userPasswordField = new JPasswordField();
-		userPasswordField.setBounds(524, 131, 173, 33);
+		userPasswordField.setBounds(424, 134, 173, 33);
 		add(userPasswordField);
 	}
 
+	/**
+	 * Getter to get the button of login
+	 * 
+	 * @return JButton
+	 */
 	public JButton getBtnNewButton() {
 		return this.btnNewButton;
 	}
 
+	/**
+	 * Getter to get the textfield of user to verify the username of the user
+	 * 
+	 * @return
+	 */
 	public JTextField getUserTextField() {
 		return this.userTextField;
 	}
 
+	/**
+	 * Getter to get the textfield of user to verify the password of the user
+	 * 
+	 * @return
+	 */
 	public JPasswordField getUserPasswordField() {
 		return this.userPasswordField;
 	}
 
+	/**
+	 * This getter contains a JDialog to show to the user if the username or
+	 * password are incorrect
+	 * 
+	 * @return JDialog
+	 */
 	public JDialog getInvalidLogin() {
 		JLabel showUsernameOrPasswordIncorrect = new JLabel("Username or password incorrect");
 		JPanel showUserPassPanel = new JPanel();

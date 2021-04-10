@@ -2,6 +2,8 @@ package manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +18,10 @@ import model.Player;
 import model.Score;
 import utils.Tetris;
 
+/**
+ * @author alu2017243
+ *
+ */
 public class Manager {
 
 	private LoginPanel loginPanel;
@@ -31,6 +37,9 @@ public class Manager {
 	private String user;
 	private String score;
 
+	/**
+	 * Constructor
+	 */
 	public Manager() {
 		this.fileManagement = new FileManagement();
 		this.loginPanel = new LoginPanel();
@@ -40,6 +49,10 @@ public class Manager {
 		this.scores = this.fileManagement.getGameScore();
 	}
 
+	/**
+	 * Method called in main to start the program
+	 * 
+	 */
 	public void start() {
 		this.loginPanel.setVisible(true);
 		System.out.println(scores.toString());
@@ -65,7 +78,6 @@ public class Manager {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (isUsernameAndPasswordCorrect()) {
-
 					saveScore();
 					consolePanel.getTextArea().append("Correct user authentication \n");
 					consolePanel.getTextArea().append("PANEL: " + user + "\n");
@@ -74,6 +86,7 @@ public class Manager {
 					consolePanel.setVisible(true);
 					mainFrame.getJSplitPane().setRightComponent(consolePanel);
 					mainFrame.getJSplitPane().setLeftComponent(mainMenuPanel);
+					mainFrame.getJSplitPane().setEnabled(false);
 					mainFrame.getJSplitPane().setDividerLocation(700);
 				}
 			}
@@ -153,6 +166,7 @@ public class Manager {
 				isButtonEndGameVisible();
 				mainFrame.getJSplitPane().setRightComponent(consolePanel);
 				mainFrame.getJSplitPane().setLeftComponent(mainMenuPanel);
+				mainFrame.getJSplitPane().setEnabled(false);
 				mainFrame.getJSplitPane().setDividerLocation(700);
 				tetris.pause();
 				setPlayerScore();
@@ -164,6 +178,7 @@ public class Manager {
 	private void saveScore() {
 		DefaultTableModel defaultTableModel = (DefaultTableModel) this.mainMenuPanel.getTable().getModel();
 		defaultTableModel.getDataVector().clear();
+
 		for (Score score : scores) {
 			defaultTableModel.addRow(new Object[] { score.getPlayer(), score.getScore(), score.getDate() });
 		}

@@ -23,11 +23,20 @@ public class FileManagement {
 
 	private File loginFile;
 
+	/**
+	 * This constructor create the route and the file
+	 * 
+	 */
 	public FileManagement() {
 		this.route();
 		this.loginFile = new File(route() + LOGIN_FILE + ".txt");
 	}
 
+	/**
+	 * This method encharges to create a folder called "data"
+	 * 
+	 * @return the route and the file separator
+	 */
 	private String route() {
 		String route = System.getProperty("user.dir") + SEPARATOR + FOLDER_DATA;
 		File folder = new File(route);
@@ -38,6 +47,12 @@ public class FileManagement {
 		return route + SEPARATOR;
 	}
 
+	/**
+	 * Method that read all the file of the login with a while loop and creates each
+	 * object and returns an ArrayList of Player object
+	 * 
+	 * @return arraylist of player object
+	 */
 	public List<Player> getUserLogin() {
 		List<Player> userLogin = new ArrayList<Player>();
 		File file = new File(route() + LOGIN_FILE + ".txt");
@@ -69,6 +84,12 @@ public class FileManagement {
 		return userLogin;
 	}
 
+	/**
+	 * Method that read all the file of the game score using with a while loop and
+	 * creates each object and returns an ArrayList of Score object
+	 * 
+	 * @return
+	 */
 	public List<Score> getGameScore() {
 		List<Score> scores = new ArrayList<>();
 		File file = new File(route() + SCORE_FILE + ".txt");
@@ -94,6 +115,11 @@ public class FileManagement {
 		return scores;
 	}
 
+	/**
+	 * This function receives a parameter to save all the data to the file.txt
+	 * 
+	 * @param scores is an arraylist that contains an object type Score
+	 */
 	public void saveScoreData(List<Score> scores) {
 		File scoreFile = new File(route() + SCORE_FILE + ".txt");
 
